@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Views to Clients | High-Converting Landing Page Blueprint & Demo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            900: '#1e1b4b',
+                            accent: '#06b6d4',
+                            emerald: '#10b981',
+                            rose: '#f43f5e'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card-active {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.25);
+        }
+        .glow-effect {
+            box-shadow: 0 0 35px -5px rgba(99, 102, 241, 0.4);
+        }
+        .glow-rose {
+            box-shadow: 0 0 35px -5px rgba(244, 63, 94, 0.3);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.3);
+        }
+        /* Custom range slider styling */
+        input[type=range] {
+            appearance: none;
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #1e293b;
+            border-radius: 9999px;
+            border: 1px solid #334155;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -7px;
+            box-shadow: 0 0 12px #6366f1;
+        }
+        input[type=range]::-moz-range-track { height: 8px; background: #1e293b; border: 1px solid #334155; border-radius: 9999px; }
+        input[type=range]::-moz-range-thumb { height: 22px; width: 22px; border: 0; border-radius: 50%; background: #6366f1; box-shadow: 0 0 12px #6366f1; }
+        :focus-visible { outline: 2px solid #818cf8; outline-offset: 3px; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-200 bg-[#0b0f19] selection:bg-brand-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+    <!-- Ambient Glow Background Gradients -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 -right-40 w-96 h-96 bg-brand-accent/15 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 w-full glass-panel border-b border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-accent flex items-center justify-center text-white font-bold shadow-lg shadow-brand-500/30">
+                    <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">Blueprint</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-400 border border-brand-500/30 ml-2 font-medium">Live Demo</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
+                <a href="#calculator" class="hover:text-white transition-colors">DM vs Site Calculator</a>
+                <a href="#blueprint" class="hover:text-white transition-colors">Interactive Blueprint</a>
+                <a href="#comparison" class="hover:text-white transition-colors">Why Sites Win</a>
+            </nav>
+
+            <button type="button" id="mobileMenuButton" onclick="toggleMobileNav()" aria-expanded="false" aria-controls="mobileNav" aria-label="Open navigation menu" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-gray-300 hover:bg-gray-800 focus:ring-2 focus:ring-brand-400">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+
+            <button type="button" onclick="openModal()" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs sm:text-sm font-semibold rounded-xl group bg-gradient-to-br from-brand-500 to-brand-accent group-hover:from-brand-500 group-hover:to-brand-accent hover:text-white text-white focus:ring-2 focus:outline-none focus:ring-brand-400 shadow-lg shadow-brand-500/20 transition-all duration-300">
+                <span class="relative px-4 py-2 transition-all ease-in duration-75 bg-gray-900 rounded-[10px] group-hover:bg-opacity-0 flex items-center gap-2">
+                    <span>DM to Get Your Website</span>
+                    
+                </span>
+            </button>
+        </div>
+        <nav id="mobileNav" class="hidden md:hidden max-w-7xl mx-auto px-4 pb-4 space-y-1 text-sm font-medium" aria-label="Mobile navigation">
+            <a href="#calculator" onclick="closeMobileNav()" class="block rounded-lg px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white">DM vs Site Calculator</a>
+            <a href="#blueprint" onclick="closeMobileNav()" class="block rounded-lg px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white">Interactive Blueprint</a>
+            <a href="#comparison" onclick="closeMobileNav()" class="block rounded-lg px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white">Why Sites Win</a>
+        </nav>
+    </header>
+
+    <main class="relative z-10 flex-grow">
+
+        <!-- HERO SECTION -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 md:pt-20 md:pb-24 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs sm:text-sm font-medium mb-6 animate-pulse">
+                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                <span>Attention Creators, Brands & Startups with NO Website</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight">
+                Getting Views & DMs, but <span class="bg-gradient-to-r from-rose-400 via-brand-400 to-brand-accent bg-clip-text text-transparent">Losing 80% of Buyers?</span>
+            </h1>
+
+            <p class="mt-6 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Relying purely on social media DMs creates friction, delayed responses, and lost trust. Explore this live interactive demo to see how a <strong class="text-white font-semibold">custom high-converting web system</strong> turns casual views into automated paying clients 24/7.
+            </p>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#calculator" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold flex items-center justify-center gap-2 shadow-xl shadow-brand-600/30 transition-all hover:scale-105">
+                    <i data-lucide="calculator" class="w-5 h-5"></i>
+                    <span>Calculate Your Lost DM Revenue</span>
+                </a>
+                <a href="#blueprint" class="w-full sm:w-auto px-6 py-3.5 rounded-xl glass-card hover:bg-gray-800 text-gray-300 hover:text-white font-semibold flex items-center justify-center gap-2 border border-gray-700 transition-all">
+                    <i data-lucide="layout" class="w-5 h-5"></i>
+                    <span>Inspect High-Converting Blueprint</span>
+                </a>
+            </div>
+
+            <!-- Floating Social Proof Stat Pill -->
+            <div class="mt-12 inline-flex flex-wrap justify-center gap-x-6 gap-y-3 px-4 sm:px-6 py-3 rounded-2xl glass-panel border border-gray-800/80 text-xs sm:text-sm text-gray-400 shadow-2xl max-w-full">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+                    <span>No Tech Skills Needed</span>
+                </div>
+                <div class="h-4 w-px bg-gray-800"></div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="trending-up" class="w-4 h-4 text-brand-400"></i>
+                    <span>Avg +310% Conversion Lift</span>
+                </div>
+                <div class="h-4 w-px bg-gray-800 hidden sm:block"></div>
+                <div class="hidden sm:flex items-center gap-2">
+                    <i data-lucide="clock" class="w-4 h-4 text-amber-400"></i>
+                    <span>Automatic 24/7 Sales</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: INTERACTIVE DM VS WEBSITE CALCULATOR -->
+        <section id="calculator" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">The DM Revenue Leakage Calculator</h2>
+                <p class="text-gray-400 mt-2 text-sm sm:text-base">Drag the slider to your estimated monthly video views / profile visits to see how much money is slipping away in DMs.</p>
+            </div>
+
+            <div class="glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden border border-gray-800">
+                <!-- Currency Toggle & Slider Bar -->
+                <div class="max-w-3xl mx-auto mb-10">
+                    <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+                        <label for="trafficRange" class="font-bold text-lg text-white flex items-center gap-2">
+                            <i data-lucide="eye" class="w-5 h-5 text-brand-400"></i>
+                            Monthly Traffic / Profile Visits:
+                        </label>
+                        <div class="flex items-center bg-gray-900/90 p-1 rounded-xl border border-gray-800 text-xs font-semibold">
+                            <button id="currUSD" onclick="setCurrency('USD')" class="px-3 py-1.5 rounded-lg bg-brand-600 text-white transition-all">USD ($)</button>
+                            <button id="currNGN" onclick="setCurrency('NGN')" class="px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all">NGN (₦)</button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <input type="range" id="trafficRange" aria-label="Monthly traffic or profile visits" aria-valuetext="25,000 visits" min="2000" max="100000" step="1000" value="25000" class="w-full min-w-0">
+                        <span id="trafficValue" class="text-xl sm:text-2xl font-black text-brand-400 min-w-[76px] sm:min-w-[100px] text-right">25,000</span>
+                    </div>
+
+                    <div class="flex justify-between text-xs text-gray-500 font-medium mt-2 px-1">
+                        <span>2,000 visits</span>
+                        <span>50,000 visits</span>
+                        <span>100,000+ visits</span>
+                    </div>
+                </div>
+
+                <!-- Comparison Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Column 1: The Leaky DM Funnel -->
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl border-l-4 border-l-rose-500 relative">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-xl text-rose-400 flex items-center gap-2">
+                                <i data-lucide="message-square-off" class="w-5 h-5"></i>
+                                Status Quo: DMs Only
+                            </h3>
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">Low Efficiency</span>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-gray-300">
+                            <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                                <span class="text-gray-400">Profile Clicks to DM (3%)</span>
+                                <span id="dmClicks" class="font-bold text-white">750 users</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                                <span class="text-gray-400">Lost to Slow Replies / Ghosting</span>
+                                <span class="font-semibold text-rose-400">~65% drop-off</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                                <span class="text-gray-400">Actual Conversations Closed</span>
+                                <span id="dmConversions" class="font-bold text-white">15 clients</span>
+                            </div>
+                            <div class="pt-4">
+                                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">Estimated Monthly Revenue:</p>
+                                <p id="dmRevenue" class="text-3xl font-black text-white">$1,500</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-3 rounded-xl bg-rose-950/40 border border-rose-800/40 text-xs text-rose-300 flex items-start gap-2">
+                            <i data-lucide="info" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i>
+                            <span>Buyers hate waiting 4+ hours for price details in DMs. Most buy from a competitor with an instant link instead.</span>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: High-Converting Website Funnel -->
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl border-l-4 border-l-emerald-500 glow-emerald relative">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-xl text-emerald-400 flex items-center gap-2">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                                With Custom Web System
+                            </h3>
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Automated 24/7</span>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-gray-300">
+                            <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                                <span class="text-gray-400">Link-in-Bio Clicks to Site (8%)</span>
+                                <span id="siteClicks" class="font-bold text-white">2,000 visitors</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                                <span class="text-gray-400">Instant Automated Conversion Rate</span>
+                                <span class="font-semibold text-emerald-400">3.5% avg</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                                <span class="text-gray-400">Total Paying Customers</span>
+                                <span id="siteConversions" class="font-bold text-white">70 clients</span>
+                            </div>
+                            <div class="pt-4">
+                                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">Estimated Monthly Revenue:</p>
+                                <p id="siteRevenue" class="text-3xl font-black text-emerald-400">$7,000</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-3 rounded-xl bg-emerald-950/40 border border-emerald-800/40 text-xs text-emerald-300 flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                            <span> Instant credibility, social proof, automated checkout or calendar booking with ZERO manual messaging.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lost Revenue Highlight Banner -->
+                <div class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-rose-900/40 via-brand-900/40 to-emerald-900/40 border border-gray-700 text-center flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="text-left">
+                        <p class="text-xs uppercase font-bold text-gray-400 tracking-wider">Estimated Revenue You're Leaving On The Table Every Month:</p>
+                        <p id="lostRevenue" class="text-3xl sm:text-4xl font-black text-rose-400 mt-1">+$5,500 / month</p>
+                    </div>
+                    <button onclick="openModal()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-brand-accent hover:from-brand-600 hover:to-brand-500 text-white font-bold text-sm shadow-lg shadow-brand-500/30 transition-all hover:scale-105 whitespace-nowrap">
+                        Send a DM to Fix Your Leakage Now &rarr;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: INTERACTIVE LIVE WIREFRAME / BLUEPRINT BREAKDOWN -->
+        <section id="blueprint" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">The Conversion Anatomy</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-3">High-Converting Landing Page Blueprint</h2>
+                <p class="text-gray-400 mt-2 text-sm sm:text-base max-w-2xl mx-auto">Click any wireframe block on the left to see why each specific section is engineered to convert profile visitors into high-paying clients.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Wireframe Interactive Mockup Column -->
+                <div class="lg:col-span-6 space-y-3">
+                    <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+                        <span>Interactive Site Anatomy (Click Blocks)</span>
+                        <span class="text-brand-400 animate-pulse">Live Interactive</span>
+                    </div>
+
+                    <!-- Block 1: Hero -->
+                    <div id="block-hero" onclick="selectBlueprint('hero')" class="blueprint-block glass-card p-4 rounded-xl cursor-pointer border hover:border-brand-500 transition-all group flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xs group-hover:bg-brand-500 group-hover:text-white transition-all">1</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">1. Irresistible Hero Headline & Hook</h4>
+                                <p class="text-xs text-gray-400">Captures attention in under 3 seconds</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500 group-hover:text-brand-400"></i>
+                    </div>
+
+                    <!-- Block 2: Pain & Solution -->
+                    <div id="block-pain" onclick="selectBlueprint('pain')" class="blueprint-block glass-card p-4 rounded-xl cursor-pointer border hover:border-brand-500 transition-all group flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xs group-hover:bg-brand-500 group-hover:text-white transition-all">2</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">2. Pain Point & Transformation Story</h4>
+                                <p class="text-xs text-gray-400">Agitates problem and positions your service as the cure</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500 group-hover:text-brand-400"></i>
+                    </div>
+
+                    <!-- Block 3: Social Proof -->
+                    <div id="block-proof" onclick="selectBlueprint('proof')" class="blueprint-block glass-card p-4 rounded-xl cursor-pointer border hover:border-brand-500 transition-all group flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xs group-hover:bg-brand-500 group-hover:text-white transition-all">3</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">3. High-Trust Social Proof & Wall of Love</h4>
+                                <p class="text-xs text-gray-400">Reviews, client stats, before/after visual proof</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500 group-hover:text-brand-400"></i>
+                    </div>
+
+                    <!-- Block 4: Offer & Pricing -->
+                    <div id="block-offer" onclick="selectBlueprint('offer')" class="blueprint-block glass-card p-4 rounded-xl cursor-pointer border hover:border-brand-500 transition-all group flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xs group-hover:bg-brand-500 group-hover:text-white transition-all">4</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">4. Transparent Offer & Value Stack</h4>
+                                <p class="text-xs text-gray-400">Removes "How much is this?" friction entirely</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500 group-hover:text-brand-400"></i>
+                    </div>
+
+                    <!-- Block 5: One-Click Call To Action -->
+                    <div id="block-cta" onclick="selectBlueprint('cta')" class="blueprint-block glass-card p-4 rounded-xl cursor-pointer border hover:border-brand-500 transition-all group flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xs group-hover:bg-brand-500 group-hover:text-white transition-all">5</div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">5. Frictionless Automated CTA Engine</h4>
+                                <p class="text-xs text-gray-400">Direct booking calendar or instant payment link</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500 group-hover:text-brand-400"></i>
+                    </div>
+                </div>
+
+                <!-- Detailed Explanation Display Panel -->
+                <div class="lg:col-span-6">
+                    <div id="blueprintDisplay" class="glass-panel p-6 sm:p-8 rounded-3xl border border-brand-500/30 glow-effect min-h-[420px] flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div id="blueIcon" class="w-12 h-12 rounded-2xl bg-brand-500/20 text-brand-400 flex items-center justify-center">
+                                    <i data-lucide="zap" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span id="blueStep" class="text-xs font-bold text-brand-400 uppercase tracking-widest">Section Insight</span>
+                                    <h3 id="blueTitle" class="text-xl sm:text-2xl font-bold text-white">Click any section to inspect</h3>
+                                </div>
+                            </div>
+
+                            <p id="blueDesc" class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                                Selecting a wireframe component on the left reveals how strategic copywriting, visual layout, and psychological triggers come together to turn cold social traffic into hot buyers without manual effort.
+                            </p>
+
+                            <div class="p-4 rounded-2xl bg-gray-900/80 border border-gray-800 mb-6">
+                                <h4 class="text-xs font-bold uppercase text-gray-400 tracking-wider mb-2 flex items-center gap-2">
+                                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                                    Why This Fixes the DM Problem:
+                                </h4>
+                                <p id="blueFix" class="text-xs sm:text-sm text-gray-300">
+                                    DMs force visitors to ask repetitive questions. A well-placed section answers all doubts instantly so they don't jump back to scroller mode.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-800/80 flex items-center justify-between">
+                            <span class="text-xs text-gray-500">Need this built for your brand?</span>
+                            <button onclick="openModal()" class="text-xs sm:text-sm text-brand-400 hover:text-white font-bold flex items-center gap-1 transition-colors">
+                                <span>Send a DM to Get a site built like this</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: COMPARISON TABLE (DM vs WEBSITE) -->
+        <section id="comparison" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">DMs vs. Professional Web Engine</h2>
+                <p class="text-gray-400 mt-2 text-sm sm:text-base">Why top creators and startups make 10x more sales with a dedicated site.</p>
+            </div>
+
+            <div class="glass-panel rounded-3xl overflow-hidden border border-gray-800 shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-[640px] text-left text-sm">
+                        <thead class="bg-gray-900/80 text-gray-400 uppercase text-xs tracking-wider border-b border-gray-800">
+                            <tr>
+                                <th class="p-4 sm:p-6">Feature / Experience</th>
+                                <th class="p-4 sm:p-6 text-rose-400">Instagram / TikTok DMs</th>
+                                <th class="p-4 sm:p-6 text-emerald-400">Custom Web Landing Page</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800/60 text-gray-300">
+                            <tr>
+                                <td class="p-4 sm:p-6 font-semibold text-white">Availability & Speed</td>
+                                <td class="p-4 sm:p-6 text-rose-300">Requires manual replies; slow response kills impulse buyers.</td>
+                                <td class="p-4 sm:p-6 text-emerald-300 font-medium">100% automated 24/7 instant conversion.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-6 font-semibold text-white">Perceived Brand Value</td>
+                                <td class="p-4 sm:p-6 text-rose-300">Looks like an informal hobbyist or side-hustle.</td>
+                                <td class="p-4 sm:p-6 text-emerald-300 font-medium">Looks like an established premium business.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-6 font-semibold text-white">Payment & Booking Friction</td>
+                                <td class="p-4 sm:p-6 text-rose-300">Manual back-and-forth bank transfers or links in DM.</td>
+                                <td class="p-4 sm:p-6 text-emerald-300 font-medium">One-click checkout (Stripe, Paystack, Calendly).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-6 font-semibold text-white">Analytics & Retargeting</td>
+                                <td class="p-4 sm:p-6 text-rose-300">Zero tracking on who looked but didn't buy.</td>
+                                <td class="p-4 sm:p-6 text-emerald-300 font-medium">Full pixel analytics & retargeting integration.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 sm:p-6 font-semibold text-white">Scalability</td>
+                                <td class="p-4 sm:p-6 text-rose-300">Maxes out when you get too many messages to reply.</td>
+                                <td class="p-4 sm:p-6 text-emerald-300 font-medium">Handles 100,000+ simultaneous buyers smoothly.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA CALLOUT BANNER -->
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-brand-500/30 glow-effect relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-brand-500/10 rounded-full blur-2xl"></div>
+                
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Ready to Stop Losing Clients in DMs?</h2>
+                <p class="text-gray-300 mt-4 max-w-xl mx-auto text-sm sm:text-base">
+                    I build sleek, fast, and high-converting websites tailored specifically for creators, startups, and service businesses who want to automate their sales.
+                </p>
+
+                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="openModal()" class="px-8 py-4 rounded-xl bg-gradient-to-r from-brand-500 via-brand-600 to-brand-accent text-white font-bold text-base shadow-xl shadow-brand-500/30 transition-all hover:scale-105">
+                        Go Back To dani.web.dev and Send a DM to Get Your Custom Web Setup Quote &rarr;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800/80 bg-gray-950/80 py-8 text-center text-xs text-gray-500 relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© <span id="year"></span> DANI WEB DEV Web Services. Built for businesses, brands, creators & startups.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE LEAD CAPTURE MODAL -->
+    <div id="ctaModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target === this) closeModal()">
+        <div class="glass-panel w-full max-w-md max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-8 border border-brand-500/40 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button type="button" onclick="closeModal()" aria-label="Close dialog" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2 rounded-full hover:bg-gray-800 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-brand-500/20 text-brand-400 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="rocket" class="w-6 h-6"></i>
+                </div>
+                <h3 id="modalTitle" class="text-xl font-bold text-white">Get Your Custom Website</h3>
+                <p class="text-xs text-gray-400 mt-1">Fill this out to get a custom design proposal and price estimate within 24 hours.</p>
+            </div>
+
+            <form id="leadForm" onsubmit="handleFormSubmit(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Your Name or Brand</label>
+                    <input type="text" name="name" required placeholder="e.g. Alex Rivera / Apex Agency" class="w-full px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-brand-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Email Address or WhatsApp</label>
+                    <input type="text" name="contact" required placeholder="Where can I send the design proposal?" class="w-full px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-brand-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Social Profile Link (Instagram/TikTok)</label>
+                    <input type="url" name="socialProfile" placeholder="https://instagram.com/yourhandle" class="w-full px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-brand-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Business Type</label>
+                    <select name="businessType" class="w-full px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-700 text-white text-sm focus:outline-none focus:border-brand-500">
+                        <option>Creator / Influencer selling digital products</option>
+                        <option>Service Business / Coach / Consultant</option>
+                        <option>Startup / SaaS</option>
+                        <option>E-commerce Brand</option>
+                        <option>Local Business</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm shadow-lg shadow-brand-600/30 transition-all">
+                    Request Proposal & Price Quote
+                </button>
+            </form>
+
+            <div id="formSuccess" class="hidden text-center py-6 space-y-3">
+                <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white">Proposal Request Received!</h4>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                    WhatsApp has opened with your request details. Send the prefilled message to submit your proposal request.
+                </p>
+                <button onclick="closeModal()" class="px-4 py-2 bg-gray-800 text-gray-300 hover:text-white rounded-xl text-xs font-semibold">Close Preview</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // State variables
+        let currency = 'USD'; // 'USD' or 'NGN'
+        const conversionRateUSD = 100; // Value per client avg in USD
+        const conversionRateNGN = 100000; // Value per client avg in NGN
+        const ngnExchange = 1500; // NGN per USD multiplier
+
+        // DOM elements for calculator
+        const trafficRange = document.getElementById('trafficRange');
+        const trafficValue = document.getElementById('trafficValue');
+        const dmClicks = document.getElementById('dmClicks');
+        const dmConversions = document.getElementById('dmConversions');
+        const dmRevenue = document.getElementById('dmRevenue');
+        const siteClicks = document.getElementById('siteClicks');
+        const siteConversions = document.getElementById('siteConversions');
+        const siteRevenue = document.getElementById('siteRevenue');
+        const lostRevenue = document.getElementById('lostRevenue');
+
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobileNav');
+            const button = document.getElementById('mobileMenuButton');
+            const opening = nav.classList.contains('hidden');
+            nav.classList.toggle('hidden');
+            button.setAttribute('aria-expanded', String(opening));
+            button.setAttribute('aria-label', opening ? 'Close navigation menu' : 'Open navigation menu');
+        }
+
+        function closeMobileNav() {
+            document.getElementById('mobileNav').classList.add('hidden');
+            document.getElementById('mobileMenuButton').setAttribute('aria-expanded', 'false');
+            document.getElementById('mobileMenuButton').setAttribute('aria-label', 'Open navigation menu');
+        }
+
+        // Currency Toggle
+        function setCurrency(curr) {
+            currency = curr;
+            const btnUSD = document.getElementById('currUSD');
+            const btnNGN = document.getElementById('currNGN');
+
+            if(curr === 'USD') {
+                btnUSD.className = "px-3 py-1.5 rounded-lg bg-brand-600 text-white transition-all";
+                btnNGN.className = "px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all";
+            } else {
+                btnNGN.className = "px-3 py-1.5 rounded-lg bg-brand-600 text-white transition-all";
+                btnUSD.className = "px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all";
+            }
+            updateCalculator();
+        }
+
+        // Format currency helper
+        function formatMoney(amount) {
+            if(currency === 'USD') {
+                return '$' + amount.toLocaleString('en-US');
+            } else {
+                return '₦' + (amount * ngnExchange).toLocaleString('en-US');
+            }
+        }
+
+        // Calculator update logic
+        function updateCalculator() {
+            const traffic = parseInt(trafficRange.value);
+            trafficValue.textContent = traffic.toLocaleString('en-US');
+            trafficRange.setAttribute('aria-valuetext', traffic.toLocaleString('en-US') + ' visits');
+
+            // DM calculations
+            const dmClickCount = Math.round(traffic * 0.03); // 3% click
+            const dmConvCount = Math.round(dmClickCount * 0.02); // 2% close in DM
+            const dmRev = dmConvCount * conversionRateUSD;
+
+            dmClicks.textContent = dmClickCount.toLocaleString('en-US') + ' users';
+            dmConversions.textContent = dmConvCount.toLocaleString('en-US') + ' clients';
+            dmRevenue.textContent = formatMoney(dmRev);
+
+            // Website calculations
+            const siteClickCount = Math.round(traffic * 0.08); // 8% link click
+            const siteConvCount = Math.round(siteClickCount * 0.035); // 3.5% auto conversion
+            const siteRev = siteConvCount * conversionRateUSD;
+
+            siteClicks.textContent = siteClickCount.toLocaleString('en-US') + ' visitors';
+            siteConversions.textContent = siteConvCount.toLocaleString('en-US') + ' clients';
+            siteRevenue.textContent = formatMoney(siteRev);
+
+            // Lost difference
+            const diff = siteRev - dmRev;
+            lostRevenue.textContent = '+' + formatMoney(diff) + ' / month';
+        }
+
+        trafficRange.addEventListener('input', updateCalculator);
+        updateCalculator(); // Initial call
+
+        // BLUEPRINT INTERACTIVE DATA
+        const blueprintData = {
+            hero: {
+                step: "Section 1: Above The Fold",
+                title: "1. Irresistible Hero Headline & Hook",
+                desc: "Visitors decide whether to stay or leave in 3 seconds. The hero section clearly states your core offer, who it's for, and the immediate result they get—eliminating confusion right away.",
+                fix: "Replaces vague Instagram bios with a sharp value proposition and immediate CTA."
+            },
+            pain: {
+                step: "Section 2: Narrative & Empathy",
+                title: "2. Pain Point & Transformation Story",
+                desc: "This section articulates the exact problem your prospect is suffering from (e.g., losing time, low revenue, inefficient workflows) and proves how your product/service solves it.",
+                fix: "Stops leads from asking 'Why do I need this?' in DMs by convincing them before they even reach out."
+            },
+            proof: {
+                step: "Section 3: Trust Building",
+                title: "3. Social Proof & Wall of Love",
+                desc: "Displays real reviews, screenshots, case study metrics, or client logos. Trust is the #1 conversion blocker on social media; this eliminates skepticism instantly.",
+                fix: "Eliminates buyers asking 'Is this legit?' or 'Can I see past results?'"
+            },
+            offer: {
+                step: "Section 4: Value Breakdown",
+                title: "4. Transparent Offer & Value Stack",
+                desc: "Breaks down everything included in your product, service, or program with clear pricing tiers or feature lists. Creates high perceived value.",
+                fix: "Stops 90% of useless 'How much?' DMs by displaying clear options upfront."
+            },
+            cta: {
+                step: "Section 5: Conversion Engine",
+                title: "5. One-Click Call to Action Engine",
+                desc: "Direct integration with Calendly, Stripe, Paystack, or custom booking forms. Leads can pay or book immediately—even while you are asleep.",
+                fix: "Replaces manual payment links with instant, frictionless 24/7 checkout."
+            }
+        };
+
+        function selectBlueprint(key) {
+            const data = blueprintData[key];
+            if(!data) return;
+
+            // Highlight selected block
+            document.querySelectorAll('.blueprint-block').forEach(el => {
+                el.classList.remove('glass-card-active');
+            });
+            const activeEl = document.getElementById(`block-${key}`);
+            if(activeEl) activeEl.classList.add('glass-card-active');
+
+            // Update panel text
+            document.getElementById('blueStep').textContent = data.step;
+            document.getElementById('blueTitle').textContent = data.title;
+            document.getElementById('blueDesc').textContent = data.desc;
+            document.getElementById('blueFix').textContent = data.fix;
+        }
+
+        // Default select first blueprint item on load
+        selectBlueprint('hero');
+
+        // Modal Controls
+        let lastFocusedElement = null;
+        function openModal() {
+            lastFocusedElement = document.activeElement;
+            const modal = document.getElementById('ctaModal');
+            modal.classList.remove('hidden');
+            modal.querySelector('button').focus();
+        }
+
+        function closeModal() {
+            document.getElementById('ctaModal').classList.add('hidden');
+            if(lastFocusedElement) lastFocusedElement.focus();
+        }
+
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('ctaModal');
+            if(event.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+        });
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            const message = [
+                'Website Proposal & Price Quote Request',
+                `Name or Brand: ${formData.get('name')}`,
+                `Email or WhatsApp: ${formData.get('contact')}`,
+                `Social Profile: ${formData.get('socialProfile') || 'Not provided'}`,
+                `Business Type: ${formData.get('businessType')}`
+            ].join('\n');
+            window.open(`https://wa.me/2347041957903?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+            document.getElementById('leadForm').classList.add('hidden');
+            document.getElementById('formSuccess').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
